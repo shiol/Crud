@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace CRUD.Models
     {
         public int MidiaId { get; set; }
         public string Name { get; set; }
-        public byte[] Data { get; set; }
+        public IFormFile Data { get; set; }
 
         public Midia(string name, byte[] data)
         {
