@@ -13,11 +13,6 @@ namespace CRUD.Models
         public string Name { get; set; }
         public byte[] Data { get; set; }
 
-        public Midia()
-        {
-
-        }
-
         public Midia(string name, byte[] data)
         {
             Name = name;

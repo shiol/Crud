@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using CRUD.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using CRUD.Utilities;
 
 namespace CRUD.Pages.Midias
 {
@@ -28,7 +29,7 @@ namespace CRUD.Pages.Midias
         [BindProperty]
         public Midia Midia { get; set; }
         [BindProperty]
-        public List<IFormFile> Files { get; set; }
+        public IFormFile File { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -37,27 +38,26 @@ namespace CRUD.Pages.Midias
                 return Page();
             }
 
-            long size = Files.Sum(f => f.Length);
+            var publicScheduleData =
+               await FileHelpers.ProcessFormFile(FileUpload.UploadPublicSchedule, ModelState);
 
+            var privateScheduleData =
+  await FileHelpers.ProcessFormFile(FileUpload.UploadPrivateSchedule, ModelState);
 
-            // full path to file in temp location
             var filePath = Path.GetTempFileName();
 
-            foreach (var formFile in Files)
+            if (File.Length > 0)
             {
-                if (formFile.Length > 0)
+                using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await formFile.CopyToAsync(stream);
-                    }
+                    await File.CopyToAsync(stream);
                 }
             }
 
             // process uploaded files
             // Don't rely on or trust the FileName property without validation.
 
-            var data = (new { count = Files.Count, size, filePath });
+            var data = (new { count = File.Count, size, filePath });
 
             _context.Midia.Add(Midia);
             await _context.SaveChangesAsync();

@@ -37,10 +37,7 @@ namespace CRUD
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<CRUDContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("CRUDContext")));
-
-//            services.AddDbContext<Context>(options =>
-  //                  options.UseSqlServer(Configuration.GetConnectionString("Context")));
+             options.UseSqlServer(Configuration.GetConnectionString("CRUDContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
