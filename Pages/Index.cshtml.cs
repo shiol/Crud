@@ -13,10 +13,5 @@ namespace CRUD.Pages
         {
 
         }
-
-        public void OnPost()
-        {
-
-        }
     }
 }
