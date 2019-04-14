@@ -14,7 +14,7 @@ namespace CRUD.Models
         public string Name { get; set; }
         public IFormFile Data { get; set; }
 
-        public Midia(string name, byte[] data)
+        public Midia(string name, IFormFile data)
         {
             Name = name;
             Data = data;
