@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRUD.Migrations
 {
     [DbContext(typeof(CRUDContext))]
-    [Migration("20190414035911_context")]
-    partial class context
+    [Migration("20190417235025_Context")]
+    partial class Context
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,8 @@ namespace CRUD.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<byte[]>("Data");
+
+                    b.Property<string>("Description");
 
                     b.Property<string>("Name");
 

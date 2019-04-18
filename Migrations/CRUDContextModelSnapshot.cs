@@ -27,6 +27,8 @@ namespace CRUD.Migrations
 
                     b.Property<byte[]>("Data");
 
+                    b.Property<string>("Description");
+
                     b.Property<string>("Name");
 
                     b.HasKey("MidiaId");

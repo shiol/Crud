@@ -23,20 +23,26 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Midia) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Data)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.MidiaId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.MidiaId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.MidiaId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Midia)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.Data)*@
+                    @{
+                        var base64 = Convert.ToBase64String(item.Data);
+                        var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+                    }
+                    <img src="@imgSrc" width="200" />
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.MidiaId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.MidiaId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.MidiaId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
