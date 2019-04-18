@@ -5,7 +5,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Listagem JPG</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -13,6 +13,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Midia[0].Description)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Midia[0].Name)
             </th>
@@ -27,13 +30,16 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @*@Html.DisplayFor(modelItem => item.Data)*@
                     @{
+                        var ext = item.Name.Split('\\').Last().Split('.').Last();
                         var base64 = Convert.ToBase64String(item.Data);
-                        var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+                        var imgSrc = String.Format("data:image/{0};base64,{1}", ext, base64);
                     }
                     <img src="@imgSrc" width="200" />
                 </td>

@@ -38,12 +38,13 @@ namespace CRUD.Pages.Midias
 
             }
 
-            var name = Request.Form["Midia.Name"];
+            var description = Request.Form["Midia.Description"];
             var path = Request.Form["Midia.Data"];
             var fullPath = System.IO.Path.GetFullPath(path);
             var file = System.IO.File.ReadAllBytes(fullPath);
 
-            Midia.Name = name;
+            Midia.Description = description;
+            Midia.Name = fullPath.ToString().Split('\\').Last();
             Midia.Data = file;
 
             _context.Midia.Add(Midia);
