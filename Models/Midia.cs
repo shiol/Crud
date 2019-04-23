@@ -14,5 +14,11 @@ namespace CRUD.Models
         public string Description { get; set; }
         public string Name { get; set; }
         public byte[] Data { get; set; }
+        
+        public Midia()
+        {
+var path = Path.GetFullPath()
+            }
     }
+
 }
