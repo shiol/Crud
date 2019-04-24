@@ -1,11 +1,11 @@
 ﻿@page
-@model CRUD.Pages.Midias.CreateModel
+@model CRUD.Pages.Midias.EditModel
 
 @{
-    ViewData["Title"] = "Add";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Add</h1>
+<h1>Edit</h1>
 
 <h4>Midia</h4>
 <hr />
@@ -13,15 +13,11 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Midia.MidiaId" />
             <div class="form-group">
                 <label asp-for="Midia.Description" class="control-label"></label>
                 <input asp-for="Midia.Description" class="form-control" />
                 <span asp-validation-for="Midia.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Midia.Name" class="control-label"></label>
-                <input asp-for="Midia.Name" class="form-control" type="file" />
-                <span asp-validation-for="Midia.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Midia.Data" class="control-label"></label>
@@ -29,14 +25,19 @@
                 <span asp-validation-for="Midia.Data" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="Midia.Name" class="control-label"></label>
+                <input asp-for="Midia.Name" class="form-control" />
+                <span asp-validation-for="Midia.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="./Index">Back to List</a>
 </div>
 
 @section Scripts {
